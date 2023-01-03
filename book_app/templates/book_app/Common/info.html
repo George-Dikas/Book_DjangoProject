@@ -1,0 +1,71 @@
+{% extends 'book_app/base.html' %}
+{% load static %}
+
+{% block title %}Personal Info{% endblock %}
+
+{% block header %}
+    <a class="logo" href="{% url 'homeView' user_type username %}">BOOK CRUD APPLICATION</a>
+    <div class="header-right">
+        <a href="{% url 'homeView' user_type username %}">Home</a>
+
+        {% if user_type == 'LibraryUser' %}
+            <a href="/library/favourites/">Favourites</a>
+        {% else %}
+            <a href="/library/new_book/">New Book</a>
+        {% endif %}
+
+        {% if user_type == 'Publisher' %}
+            <a href="/library/authors/">Authors</a>
+        {% endif %}
+
+        <a class="active" href="/library/personal_info/">Personal Info</a>
+        <a href="/library/logout/">Log Out</a>
+    </div>   
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Profile</h2>
+
+        <a href="/library/delete_profile/" class="btn btn-outline-dark btn-sm" style="float:right;"
+        onclick="return confirm('Are you sure you want to delete your profile?');"> 
+            <i class="fas fa-user-slash text-danger"></i> Delete Profile
+        </a>
+        <hr>
+
+        {% if user_type == 'LibraryUser' %}
+            <p><b>Username:</b> {{context.username}}</p>
+            <p><b>Type:</b> {{context.user_type}}</p>
+            <p><b>First Name:</b> {{context.first_name}}</p>
+            <p><b>Last Name:</b> {{context.last_name}}</p>
+            <p><b>Email:</b> {{context.email}}</p>
+
+        {% elif user_type == 'Author' %}
+            <p><b>Username:</b> {{context.username}}</p>
+            <p><b>Type:</b> {{context.user_type}}</p>
+            <p><b>First Name:</b> {{context.first_name}}</p>
+            <p><b>Last Name:</b> {{context.last_name}}</p>
+            <p><b>Age:</b> {{context.age}}</p>
+            <p><b>Email:</b> {{context.email}}</p>
+        
+        {% else %}
+            <p><b>Username:</b> {{context.username}}</p>
+            <p><b>Type:</b> {{context.user_type}}</p>
+            <p><b>Name:</b> {{context.name}}</p>
+            <p><b>Email:</b> {{context.email}}</p>
+            <p><b>Address:</b> {{context.address}} </p>
+            <p><b>City:</b> {{context.city}}</p>
+        {% endif %}
+
+        <button type="button" id="editProf" class="btn btn-primary btn-sm active" data-bs-toggle="modal" data-bs-target="#editProfile"> 
+        Edit Profile </button>
+        <button type="button" id="changePass" class="btn btn-primary btn-sm active" data-bs-toggle="modal" data-bs-target="#changePassword">
+        Change Password </button>
+        
+        {% include 'book_app/Common/updateProfile_form.html'%}
+        {% include 'book_app/Common/changePassword_form.html'%}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'book_app/js/resetForm.js' %}"></script>
+{% endblock %}

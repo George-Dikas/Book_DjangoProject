@@ -1,0 +1,47 @@
+{% extends 'book_app/base.html' %}
+{% load static %}
+
+{% block title %}Authors{% endblock %}
+
+{% block header %}
+    <a class="logo" href="{% url 'homeView' user_type username %}">BOOK CRUD APPLICATION</a>
+    <div class="header-right">
+        <a href="{% url 'homeView' user_type username %}">Home</a>
+        <a href="/library/new_book/">New Book</a>
+        <a class="active" href="/library/authors/">Authors</a>
+        <a href="/library/personal_info/">Personal Info</a>
+        <a href="/library/logout/">Log Out</a>
+    </div> 
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        
+        {% if message is not None %}
+            <h2>{{message}}</h2>
+
+        {% else %} 
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Lastname</th>
+                        <th>Firstname</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for author in authors %}
+                        <tr>
+                            <td>{{author.user.last_name}}</td>
+                            <td>{{author.user.first_name}}</td>
+                            <td>{{author.age}}</td>
+                            <td>{{author.user.email}}</td>
+                        </tr>
+                    {% endfor %}    
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

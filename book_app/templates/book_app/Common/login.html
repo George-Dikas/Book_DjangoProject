@@ -1,0 +1,29 @@
+{% extends 'book_app/base_login_reg.html' %}
+{% load crispy_forms_tags %}
+       
+{% block title %}Log In{% endblock %}
+
+{% block content %} 
+    <div class="container" style="width:25%;">
+        <form action="/library/login/" method="post" autocomplete="off">
+            {% csrf_token %}
+            <h2>Login Form</h2><hr>
+            {{form|crispy}} 
+                
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary btn-lg" value="Log In"> 
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="messages" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                <p>Don't have an account?
+                    <br><a href="/library/registration/library_user/">Register as a Library User</a> |
+                    <a href="/library/registration/author/">Register as an Author</a> |
+                    <a href="/library/registration/publisher/">Register as a Publisher</a>
+                </p>
+            </div>        
+        </form>
+    </div>
+{% endblock %}

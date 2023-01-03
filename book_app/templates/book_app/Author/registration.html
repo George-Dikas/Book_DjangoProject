@@ -1,0 +1,40 @@
+{% extends 'book_app/base_login_reg.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Author Registration{% endblock %}
+
+{% block content %} 
+    <div class="container">
+        <form action="/library/registration/author/" method="post">
+            {% csrf_token %}
+            <h2>Author Registration</h2><hr>
+                    
+            <div class="row">
+                <div class="col-md-4">
+                    {{form.first_name|as_crispy_field}} 
+                </div>
+                <div class="col-md-5">
+                    {{form.last_name|as_crispy_field}} 
+                </div>
+                <div class="col-md-3">
+                    {{form.age|as_crispy_field}} 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{form.username|as_crispy_field}} 
+                </div>
+                <div class="col-md-6">
+                    {{form.email|as_crispy_field}} 
+                </div>
+            </div>
+
+            {{form.password1|as_crispy_field}} 
+            {{form.password2|as_crispy_field}} 
+                    
+            <input type="submit" class="btn btn-primary btn-lg" value="Submit"> 
+            <a href="/library/login/" class="btn btn-secondary btn-lg">Back</a>
+        </form>
+    <div>
+{% endblock %}

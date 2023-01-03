@@ -1,0 +1,26 @@
+<!-- Rating Form Modal -->  
+
+<div class="modal fade" id="rateBook" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Book Rating</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/library/rate/" id="rateBookForm" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <input type="radio" name="stars" value="1">*<br>
+                    <input type="radio" name="stars" value="2">**<br>
+                    <input type="radio" name="stars" value="3">***<br>
+                    <input type="radio" name="stars" value="4">****<br>
+                    <input type="radio" name="stars" value="5">*****<br>         
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary">Clear</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

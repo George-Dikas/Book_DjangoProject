@@ -1,0 +1,63 @@
+{% extends 'book_app/base.html' %}
+{% load static %}
+
+{% block title %}Favourites{% endblock %}
+
+{% block header %}
+    <a class="logo" href="{% url 'homeView' user_type username %}">BOOK CRUD APPLICATION</a>
+    <div class="header-right">
+        <a href="{% url 'homeView' user_type username %}">Home</a>
+        <a class="active" href="/library/favourites/">Favourites</a>
+        <a href="/library/personal_info/">Personal Info</a>
+        <a href="/library/logout/">Log Out</a>
+    </div> 
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% if message is not None %}
+            <h2>{{message}}</h2>
+
+        {% else %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Publisher</th>
+                        <th>Publication Date</th>
+                        <th>Stars</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for book in favourite_books %}
+                    <tr>
+                        <td>{{book.title}}</td>
+                        <td>
+                            {% for author in book.authors.all %}
+                                {{author}},
+                            {% endfor %}
+                        </td>
+                        <td>{{book.publisher}}</td>
+                        <td>{{book.pub_date}}</td>
+                        <td>{{book.num_stars}}</td>
+                        <td>
+                            <a href="/library/remove_favourite/{{book.id}}"><img src="{% static 'book_app/pictures/removefav.png' %}"
+                            alt="image" width="30" height="30"></a>
+                        </td>
+                        <td>
+                            <button type="button" id="{{book.id}}" class="mybtn" data-bs-toggle="modal" 
+                            data-bs-target="#rateBook">Rate</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% include 'book_app/LibraryUser/rating_form.html'%}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script type="text/javascript" src="{% static 'book_app/js/rateBookForm.js' %}" ></script>
+        {% endif %}
+    </div>
+{% endblock %}

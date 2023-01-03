@@ -1,0 +1,30 @@
+{% extends 'book_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}New Book{% endblock %}
+
+{% block header %}
+    <a class="logo" href="{% url 'homeView' user_type username %}">BOOK CRUD APPLICATION</a>
+    <div class="header-right">
+        <a href="{% url 'homeView' user_type username %}">Home</a>
+        <a class="active" href="/library/new_book/">New Book</a>
+
+        {% if user_type == 'Publisher' %}
+            <a href="/library/authors/">Authors</a>
+        {% endif %}
+
+        <a href="/library/personal_info/">Personal Info</a>
+        <a href="/library/logout/">Log Out</a>
+    </div>   
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form action="/library/new_book/" enctype="multipart/form-data" method="post" autocomplete="off">
+            {% csrf_token %}
+            <h2>New Book</h2><hr>
+            {{form|crispy}} 
+            <input type="submit" class="btn btn-primary" value="Save"> 
+        </form>
+    </div>
+{% endblock %}
