@@ -1,6 +1,6 @@
 # Book_DjangoProject
 ## Description
-With Trainer_DjangoProject a user can:
+With Book_DjangoProject a user can:
 * create, update or delete a trainer
 * see the list with registered trainers   
 ## Technologies
