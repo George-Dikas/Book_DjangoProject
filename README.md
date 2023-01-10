@@ -26,6 +26,6 @@ With Book_DjangoProject a user can:
   - change his/her personal info or password
   - delete his/her profile
 ## Technologies
-* Django 4.1.2
+* Django 4.1.3
 * Bootstrap 4.6
 * Django-crispy-forms 1.14.0
