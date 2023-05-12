@@ -32,10 +32,10 @@ def loginView(request):
             user = authenticate(request, username=username, password=password)
 
             if user is not None:
-                 login(request, user)
-                 user_type = userType(user)
-                 messages.success(request, 'You are logged in!')
-                 return redirect('homeView', user_type, username)
+                login(request, user)
+                user_type = userType(user)
+                messages.success(request, 'You are logged in!')
+                return redirect('homeView', user_type, username)
 
             else: 
                 messages.error(request, 'Username and password do not match.')
