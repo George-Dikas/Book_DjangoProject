@@ -32,7 +32,7 @@ With Book_DjangoProject a user can:
 * Fontawesome 5.11.2
 ## Use Project Locally:
 * Project Folder and Virtual Environment:		
-  - Open Visual Code Studio
+  - Open Visual Studio Code
   - Launch Profile/Command Prompt																										
   - Go to this path: C:\Users\User\Desktop																					
   - Create a folder for the project: C:\Users\User\Desktop>mkdir Book_DjangoProject								
@@ -45,7 +45,7 @@ With Book_DjangoProject a user can:
   - (myenv) C:\Users\User\Desktop\Book_DjangoProject>cd book_project		
 * Download Project:
   - Code/Download Zip
-  - Extract folder and put it into Book_DjangoProject file
+  - Extract folder and put it into Book_DjangoProject folder
   - Change folder's name Book_DjangoProject-master into book_project
   - (myenv) C:\Users\User\Desktop\Book_DjangoProject>cd book_project
 * Run Project: 
